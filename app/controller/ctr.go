@@ -12,8 +12,15 @@ type Handler func(c *gin.Context) (response.Data, error)
 
 func Wrapper(handler Handler) func(c *gin.Context) {
 	return func(c *gin.Context) {
+
 		data, err := handler(c)
-		buf, err := json.Marshal(data)
+		var resp response.Response
+		resp.Data = data
+		if err != nil {
+			resp.Message = err.Error()
+		}
+
+		buf, err := json.Marshal(resp)
 		if err != nil {
 			panic(err)
 		}

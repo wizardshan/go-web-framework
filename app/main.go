@@ -39,7 +39,8 @@ func main() {
 	ctrUser := controller.NewUser(repoUser, servUser, cache)
 	user := engine.Group("/user")
 	{
-		user.PUT("/{id}", controller.Wrapper(ctrUser.EditProfile))
+		user.PUT("/:id", controller.Wrapper(ctrUser.EditProfile))
+		user.GET("/:id", controller.Wrapper(ctrUser.Find))
 	}
 
 	engine.Run()

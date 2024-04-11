@@ -1,0 +1,20 @@
+package controller
+
+import (
+	"{{.moduleName}}/repository"
+	"{{.moduleName}}/service"
+	"pkg/cache"
+)
+
+type I{{.name}} interface {
+}
+
+func New{{.name}}(repo repository.I{{.name}}, serv service.I{{.name}}, cache cache.ICache) I{{.name}} {
+
+	ctr := new({{.name}}Proxy)
+	ctr.repo = repo
+	ctr.serv = serv
+	ctr.cache = cache
+
+	return ctr
+}

@@ -1,0 +1,8 @@
+package service
+
+import "{{.moduleName}}/repository"
+
+type {{.name}} struct {
+	repo repository.I{{.name}}
+	mq   mq.Client
+}

@@ -1,0 +1,16 @@
+package repository
+
+import (
+	"{{.moduleName}}/repository/ent"
+	"pkg/cache"
+)
+
+type I{{.name}} interface {
+}
+
+func New{{.name}}(db *ent.Client, cache cache.ICache) I{{.name}} {
+	repo := new({{.name}}Proxy)
+	repo.db = db
+	repo.cache = cache
+	return repo
+}

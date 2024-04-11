@@ -1,0 +1,18 @@
+package service
+
+import (
+	"{{.moduleName}}/repository"
+	"pkg/cache"
+	"pkg/mq"
+)
+
+type I{{.name}} interface {
+}
+
+func New{{.name}}(repo repository.I{{.name}}, cache cache.ICache, mq mq.Client) I{{.name}} {
+	serv := new({{.name}}Proxy)
+	serv.repo = repo
+	serv.cache = cache
+	serv.mq = mq
+	return serv
+}

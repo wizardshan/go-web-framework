@@ -1,0 +1,11 @@
+package controller
+
+import (
+	"{{.moduleName}}/repository"
+	"{{.moduleName}}/service"
+)
+
+type {{.name}} struct {
+	repo repository.I{{.name}}
+	serv service.I{{.name}}
+}

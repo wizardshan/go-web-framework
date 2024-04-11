@@ -1,0 +1,3 @@
+runApp:
+	go run ./app
+

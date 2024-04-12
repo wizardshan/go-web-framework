@@ -14,9 +14,13 @@ type User struct {
 }
 
 func (ctr *User) Find(c *gin.Context) (response.Data, error) {
-	user := ctr.serv.Find(c.Request.Context(), 1)
+	user := ctr.serv.Get(c.Request.Context(), 1)
 
 	return user, nil
+}
+
+func (ctr *User) AllSql(c *gin.Context) (response.Data, error) {
+	return ctr.serv.AllSql(c.Request.Context())
 }
 
 func (ctr *User) EditProfile(c *gin.Context) (response.Data, error) {

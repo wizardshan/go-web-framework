@@ -17,6 +17,8 @@ const (
 	FieldCreateTime = "create_time"
 	// FieldUpdateTime holds the string denoting the update_time field in the database.
 	FieldUpdateTime = "update_time"
+	// FieldHashID holds the string denoting the hash_id field in the database.
+	FieldHashID = "hash_id"
 	// FieldMobile holds the string denoting the mobile field in the database.
 	FieldMobile = "mobile"
 	// FieldNickname holds the string denoting the nickname field in the database.
@@ -32,6 +34,7 @@ var Columns = []string{
 	FieldID,
 	FieldCreateTime,
 	FieldUpdateTime,
+	FieldHashID,
 	FieldMobile,
 	FieldNickname,
 	FieldBio,
@@ -54,6 +57,8 @@ var (
 	DefaultUpdateTime func() time.Time
 	// UpdateDefaultUpdateTime holds the default value on update for the "update_time" field.
 	UpdateDefaultUpdateTime func() time.Time
+	// DefaultHashID holds the default value on creation for the "hash_id" field.
+	DefaultHashID string
 	// DefaultMobile holds the default value on creation for the "mobile" field.
 	DefaultMobile string
 	// DefaultNickname holds the default value on creation for the "nickname" field.
@@ -78,6 +83,11 @@ func ByCreateTime(opts ...sql.OrderTermOption) OrderOption {
 // ByUpdateTime orders the results by the update_time field.
 func ByUpdateTime(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldUpdateTime, opts...).ToFunc()
+}
+
+// ByHashID orders the results by the hash_id field.
+func ByHashID(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldHashID, opts...).ToFunc()
 }
 
 // ByMobile orders the results by the mobile field.

@@ -48,6 +48,20 @@ func (uc *UserCreate) SetNillableUpdateTime(t *time.Time) *UserCreate {
 	return uc
 }
 
+// SetHashID sets the "hash_id" field.
+func (uc *UserCreate) SetHashID(s string) *UserCreate {
+	uc.mutation.SetHashID(s)
+	return uc
+}
+
+// SetNillableHashID sets the "hash_id" field if the given value is not nil.
+func (uc *UserCreate) SetNillableHashID(s *string) *UserCreate {
+	if s != nil {
+		uc.SetHashID(*s)
+	}
+	return uc
+}
+
 // SetMobile sets the "mobile" field.
 func (uc *UserCreate) SetMobile(s string) *UserCreate {
 	uc.mutation.SetMobile(s)
@@ -133,6 +147,10 @@ func (uc *UserCreate) defaults() {
 		v := user.DefaultUpdateTime()
 		uc.mutation.SetUpdateTime(v)
 	}
+	if _, ok := uc.mutation.HashID(); !ok {
+		v := user.DefaultHashID
+		uc.mutation.SetHashID(v)
+	}
 	if _, ok := uc.mutation.Mobile(); !ok {
 		v := user.DefaultMobile
 		uc.mutation.SetMobile(v)
@@ -154,6 +172,9 @@ func (uc *UserCreate) check() error {
 	}
 	if _, ok := uc.mutation.UpdateTime(); !ok {
 		return &ValidationError{Name: "update_time", err: errors.New(`ent: missing required field "User.update_time"`)}
+	}
+	if _, ok := uc.mutation.HashID(); !ok {
+		return &ValidationError{Name: "hash_id", err: errors.New(`ent: missing required field "User.hash_id"`)}
 	}
 	if _, ok := uc.mutation.Mobile(); !ok {
 		return &ValidationError{Name: "mobile", err: errors.New(`ent: missing required field "User.mobile"`)}
@@ -197,6 +218,10 @@ func (uc *UserCreate) createSpec() (*User, *sqlgraph.CreateSpec) {
 	if value, ok := uc.mutation.UpdateTime(); ok {
 		_spec.SetField(user.FieldUpdateTime, field.TypeTime, value)
 		_node.UpdateTime = value
+	}
+	if value, ok := uc.mutation.HashID(); ok {
+		_spec.SetField(user.FieldHashID, field.TypeString, value)
+		_node.HashID = value
 	}
 	if value, ok := uc.mutation.Mobile(); ok {
 		_spec.SetField(user.FieldMobile, field.TypeString, value)

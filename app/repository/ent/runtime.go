@@ -27,16 +27,20 @@ func init() {
 	user.DefaultUpdateTime = userDescUpdateTime.Default.(func() time.Time)
 	// user.UpdateDefaultUpdateTime holds the default value on update for the update_time field.
 	user.UpdateDefaultUpdateTime = userDescUpdateTime.UpdateDefault.(func() time.Time)
+	// userDescHashID is the schema descriptor for hash_id field.
+	userDescHashID := userFields[0].Descriptor()
+	// user.DefaultHashID holds the default value on creation for the hash_id field.
+	user.DefaultHashID = userDescHashID.Default.(string)
 	// userDescMobile is the schema descriptor for mobile field.
-	userDescMobile := userFields[0].Descriptor()
+	userDescMobile := userFields[1].Descriptor()
 	// user.DefaultMobile holds the default value on creation for the mobile field.
 	user.DefaultMobile = userDescMobile.Default.(string)
 	// userDescNickname is the schema descriptor for nickname field.
-	userDescNickname := userFields[1].Descriptor()
+	userDescNickname := userFields[2].Descriptor()
 	// user.DefaultNickname holds the default value on creation for the nickname field.
 	user.DefaultNickname = userDescNickname.Default.(string)
 	// userDescBio is the schema descriptor for bio field.
-	userDescBio := userFields[2].Descriptor()
+	userDescBio := userFields[3].Descriptor()
 	// user.DefaultBio holds the default value on creation for the bio field.
 	user.DefaultBio = userDescBio.Default.(string)
 }

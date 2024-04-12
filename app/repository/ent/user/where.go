@@ -64,6 +64,11 @@ func UpdateTime(v time.Time) predicate.User {
 	return predicate.User(sql.FieldEQ(FieldUpdateTime, v))
 }
 
+// HashID applies equality check predicate on the "hash_id" field. It's identical to HashIDEQ.
+func HashID(v string) predicate.User {
+	return predicate.User(sql.FieldEQ(FieldHashID, v))
+}
+
 // Mobile applies equality check predicate on the "mobile" field. It's identical to MobileEQ.
 func Mobile(v string) predicate.User {
 	return predicate.User(sql.FieldEQ(FieldMobile, v))
@@ -157,6 +162,71 @@ func UpdateTimeLT(v time.Time) predicate.User {
 // UpdateTimeLTE applies the LTE predicate on the "update_time" field.
 func UpdateTimeLTE(v time.Time) predicate.User {
 	return predicate.User(sql.FieldLTE(FieldUpdateTime, v))
+}
+
+// HashIDEQ applies the EQ predicate on the "hash_id" field.
+func HashIDEQ(v string) predicate.User {
+	return predicate.User(sql.FieldEQ(FieldHashID, v))
+}
+
+// HashIDNEQ applies the NEQ predicate on the "hash_id" field.
+func HashIDNEQ(v string) predicate.User {
+	return predicate.User(sql.FieldNEQ(FieldHashID, v))
+}
+
+// HashIDIn applies the In predicate on the "hash_id" field.
+func HashIDIn(vs ...string) predicate.User {
+	return predicate.User(sql.FieldIn(FieldHashID, vs...))
+}
+
+// HashIDNotIn applies the NotIn predicate on the "hash_id" field.
+func HashIDNotIn(vs ...string) predicate.User {
+	return predicate.User(sql.FieldNotIn(FieldHashID, vs...))
+}
+
+// HashIDGT applies the GT predicate on the "hash_id" field.
+func HashIDGT(v string) predicate.User {
+	return predicate.User(sql.FieldGT(FieldHashID, v))
+}
+
+// HashIDGTE applies the GTE predicate on the "hash_id" field.
+func HashIDGTE(v string) predicate.User {
+	return predicate.User(sql.FieldGTE(FieldHashID, v))
+}
+
+// HashIDLT applies the LT predicate on the "hash_id" field.
+func HashIDLT(v string) predicate.User {
+	return predicate.User(sql.FieldLT(FieldHashID, v))
+}
+
+// HashIDLTE applies the LTE predicate on the "hash_id" field.
+func HashIDLTE(v string) predicate.User {
+	return predicate.User(sql.FieldLTE(FieldHashID, v))
+}
+
+// HashIDContains applies the Contains predicate on the "hash_id" field.
+func HashIDContains(v string) predicate.User {
+	return predicate.User(sql.FieldContains(FieldHashID, v))
+}
+
+// HashIDHasPrefix applies the HasPrefix predicate on the "hash_id" field.
+func HashIDHasPrefix(v string) predicate.User {
+	return predicate.User(sql.FieldHasPrefix(FieldHashID, v))
+}
+
+// HashIDHasSuffix applies the HasSuffix predicate on the "hash_id" field.
+func HashIDHasSuffix(v string) predicate.User {
+	return predicate.User(sql.FieldHasSuffix(FieldHashID, v))
+}
+
+// HashIDEqualFold applies the EqualFold predicate on the "hash_id" field.
+func HashIDEqualFold(v string) predicate.User {
+	return predicate.User(sql.FieldEqualFold(FieldHashID, v))
+}
+
+// HashIDContainsFold applies the ContainsFold predicate on the "hash_id" field.
+func HashIDContainsFold(v string) predicate.User {
+	return predicate.User(sql.FieldContainsFold(FieldHashID, v))
 }
 
 // MobileEQ applies the EQ predicate on the "mobile" field.

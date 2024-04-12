@@ -34,6 +34,20 @@ func (uu *UserUpdate) SetUpdateTime(t time.Time) *UserUpdate {
 	return uu
 }
 
+// SetHashID sets the "hash_id" field.
+func (uu *UserUpdate) SetHashID(s string) *UserUpdate {
+	uu.mutation.SetHashID(s)
+	return uu
+}
+
+// SetNillableHashID sets the "hash_id" field if the given value is not nil.
+func (uu *UserUpdate) SetNillableHashID(s *string) *UserUpdate {
+	if s != nil {
+		uu.SetHashID(*s)
+	}
+	return uu
+}
+
 // SetMobile sets the "mobile" field.
 func (uu *UserUpdate) SetMobile(s string) *UserUpdate {
 	uu.mutation.SetMobile(s)
@@ -129,6 +143,9 @@ func (uu *UserUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := uu.mutation.UpdateTime(); ok {
 		_spec.SetField(user.FieldUpdateTime, field.TypeTime, value)
 	}
+	if value, ok := uu.mutation.HashID(); ok {
+		_spec.SetField(user.FieldHashID, field.TypeString, value)
+	}
 	if value, ok := uu.mutation.Mobile(); ok {
 		_spec.SetField(user.FieldMobile, field.TypeString, value)
 	}
@@ -161,6 +178,20 @@ type UserUpdateOne struct {
 // SetUpdateTime sets the "update_time" field.
 func (uuo *UserUpdateOne) SetUpdateTime(t time.Time) *UserUpdateOne {
 	uuo.mutation.SetUpdateTime(t)
+	return uuo
+}
+
+// SetHashID sets the "hash_id" field.
+func (uuo *UserUpdateOne) SetHashID(s string) *UserUpdateOne {
+	uuo.mutation.SetHashID(s)
+	return uuo
+}
+
+// SetNillableHashID sets the "hash_id" field if the given value is not nil.
+func (uuo *UserUpdateOne) SetNillableHashID(s *string) *UserUpdateOne {
+	if s != nil {
+		uuo.SetHashID(*s)
+	}
 	return uuo
 }
 
@@ -288,6 +319,9 @@ func (uuo *UserUpdateOne) sqlSave(ctx context.Context) (_node *User, err error) 
 	}
 	if value, ok := uuo.mutation.UpdateTime(); ok {
 		_spec.SetField(user.FieldUpdateTime, field.TypeTime, value)
+	}
+	if value, ok := uuo.mutation.HashID(); ok {
+		_spec.SetField(user.FieldHashID, field.TypeString, value)
 	}
 	if value, ok := uuo.mutation.Mobile(); ok {
 		_spec.SetField(user.FieldMobile, field.TypeString, value)

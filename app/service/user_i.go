@@ -9,7 +9,8 @@ import (
 )
 
 type IUser interface {
-	Find(ctx context.Context, id int) *domain.User
+	Get(ctx context.Context, id int) *domain.User
+	AllSql(ctx context.Context) (domain.Users, error)
 	EditProfile(ctx context.Context, req *request.UserEditProfile)
 }
 

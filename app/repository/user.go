@@ -7,23 +7,23 @@ import (
 	"context"
 )
 
-type User struct {
-	repoDB
+func (repo *User) Register(ctx context.Context, option func(builder *ent.UserCreate)) (*domain.User, error) {
+
+	var domainUser *domain.User
+	err := repo.withTx(ctx, repo.db, func(tx *ent.Tx) error {
+		db := tx.Client()
+		domainUser = repo.create(ctx, db, option)
+		hashID := "abcd"
+		repo.update(ctx, db, func(builder *ent.UserUpdate) {
+			builder.SetHashID(hashID).Where(user.ID(domainUser.ID))
+		})
+		return nil
+	})
+
+	return domainUser, err
 }
 
-func (repo *User) Find(ctx context.Context, id int) *domain.User {
-
-	entUser := repo.db.User.Query().Where(user.ID(id)).FirstX(ctx)
-
-	var domainUser domain.User
-	domainUser.ID = entUser.ID
-
-	return &domainUser
-}
-
-func (repo *User) Update(ctx context.Context, callbackFunc func(builder *ent.UserUpdate)) *domain.User {
-	builder := repo.db.User.Update()
-	callbackFunc(builder)
-	builder.SaveX(ctx)
-	return nil
-}
+//.Order(
+//func(selector *sql.Selector) {
+//	selector.OrderBy("rand()")
+//})

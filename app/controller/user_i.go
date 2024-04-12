@@ -11,6 +11,7 @@ import (
 type IUser interface {
 	EditProfile(c *gin.Context) (response.Data, error)
 	Find(c *gin.Context) (response.Data, error)
+	AllSql(c *gin.Context) (response.Data, error)
 }
 
 func NewUser(repo repository.IUser, serv service.IUser, cache cache.ICache) IUser {

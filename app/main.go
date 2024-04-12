@@ -41,6 +41,7 @@ func main() {
 	{
 		user.PUT("/:id", controller.Wrapper(ctrUser.EditProfile))
 		user.GET("/:id", controller.Wrapper(ctrUser.Find))
+		user.GET("/allSql", controller.Wrapper(ctrUser.AllSql))
 	}
 
 	engine.Run()
